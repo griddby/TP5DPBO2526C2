@@ -1,101 +1,181 @@
+
 # Tugas Praktikum 5 DPBO
 
-## Deskripsi Program
+## Janji
 
-Program ini merupakan aplikasi pengelolaan data penulis berbasis Java Swing yang terhubung dengan database MySQL. Program digunakan untuk menampilkan, menambahkan, memperbarui, dan menghapus data penulis.
+Saya Ingrid Gabryella Nainggolan dengan NIM 2506442 mengerjakan TP 5 dalam mata kuliah Desain dan Pemrograman Berorientasi Objek untuk keberkahan-Nya maka saya tidak melakukan kecurangan seperti yang telah dispesifikasikan. Aamiin.
 
-Data penulis yang dikelola meliputi ID, nama, tahun lahir, kategori tulisan, jumlah karya, dan status penulis.
+---
+
+## Tujuan Program
+
+Tujuan pembuatan aplikasi Writer Database adalah:
+
+1. Mengimplementasikan operasi CRUD (*Create, Read, Update, Delete*) yang terhubung dengan database MySQL.
+2. Mempermudah pengelolaan data penulis melalui antarmuka grafis.
+3. Menerapkan penggunaan kelas dan objek dalam Java.
+4. Mengimplementasikan pengambilan dan penyimpanan data menggunakan database.
+5. Menerapkan validasi input dan penanganan kesalahan (*error handling*) sesuai implementasi program.
+
+## Teknologi yang Digunakan
+
+- **Bahasa Pemrograman:** Java
+- **GUI:** Java Swing
+- **Database:** MySQL
+- **Database Connectivity:** JDBC
+- **Komponen GUI:** `JPanel`, `JTextField`, `JSpinner`, `JComboBox`, `JRadioButton`, `JTable`, `JButton`, dan `JLabel`
+- **IDE:** IntelliJ IDEA
 
 ## Desain Program
 
-### 1. Struktur Data
+### 1. Desain Antarmuka
 
-Program menggunakan database MySQL dengan nama `db_person` dan tabel `penulis`.
+Antarmuka aplikasi terdiri atas formulir input data penulis, tombol operasi, dan tabel yang menampilkan data penulis.
 
-Tabel `penulis` memiliki struktur sebagai berikut:
+Formulir digunakan untuk memasukkan atau mengubah informasi penulis, sedangkan tabel digunakan untuk menampilkan data yang tersimpan di database.
 
-| No. | Atribut | Tipe Data | Keterangan |
-|---|---|---|---|
-| 1 | `id` | VARCHAR(255) | ID unik penulis dan primary key |
-| 2 | `nama` | VARCHAR(255) | Nama penulis |
-| 3 | `tahunlahir` | INT | Tahun lahir penulis |
-| 4 | `kategori` | VARCHAR(255) | Kategori tulisan penulis |
-| 5 | `jumlahkarya` | INT | Jumlah karya yang dimiliki penulis |
-| 6 | `status` | VARCHAR(30) | Status penulis, yaitu Aktif, Tidak Aktif, atau Pensiun |
+### 2. Struktur Database
 
-### 2. Struktur Kelas
+Aplikasi menggunakan database MySQL dengan nama `db_person` dan tabel `penulis`.
 
-Program terdiri dari kelas `PeopleMenu` dan kelas `Database`.
+Tabel `penulis` memiliki atribut sebagai berikut:
 
-- **PeopleMenu**: Mengatur tampilan GUI, menerima input pengguna, menjalankan operasi CRUD, memvalidasi input, serta menampilkan dialog informasi dan error.
-- **Database**: Menangani koneksi dan operasi database MySQL yang digunakan oleh program.
+| Atribut | Tipe Data | Deskripsi |
+|---|---|---|
+| `id` | `VARCHAR(255)` | Identitas unik penulis dan primary key. |
+| `nama` | `VARCHAR(255)` | Nama penulis. |
+| `tahunlahir` | `INT` | Tahun lahir penulis. |
+| `kategori` | `VARCHAR(255)` | Kategori karya penulis. |
+| `jumlahkarya` | `INT` | Jumlah karya penulis. |
+| `status` | `VARCHAR(30)` | Status penulis, yaitu Aktif, Tidak Aktif, atau Pensiun. |
 
-### 3. Rancangan Antarmuka
+Atribut `id` digunakan sebagai primary key sehingga setiap penulis memiliki identitas yang unik.
 
-Antarmuka program terdiri dari beberapa komponen berikut:
+### 3. Struktur Kelas
 
-- **ID**: Field untuk memasukkan ID penulis.
-- **Nama**: Field untuk memasukkan nama penulis.
-- **Tahun Lahir**: Field untuk memasukkan tahun lahir penulis.
-- **Kategori**: ComboBox untuk memilih kategori tulisan.
-- **Jumlah Karya**: Spinner untuk menentukan jumlah karya.
-- **Status**: RadioButton untuk memilih status penulis.
-- **Tabel Data Penulis**: Menampilkan data penulis yang tersimpan di database.
-- **Add/Update**: Tombol untuk menambahkan atau memperbarui data.
-- **Delete**: Tombol untuk menghapus data yang dipilih.
-- **Cancel**: Tombol untuk mengosongkan form dan membatalkan pemilihan data.
+Program terdiri dari dua kelas utama, yaitu `PeopleMenu` dan `Database`.
 
-## Alur Program
+| Kelas | Tanggung Jawab |
+|---|---|
+| `PeopleMenu` | Mengatur antarmuka grafis, menerima input pengguna, menjalankan operasi CRUD, melakukan validasi, dan menampilkan dialog informasi maupun error. |
+| `Database` | Menangani koneksi ke database MySQL serta menjalankan query untuk mengambil, menambahkan, memperbarui, dan menghapus data. |
 
-### 1. Inisialisasi Program
+### 4. Komponen Antarmuka
 
-Ketika program dijalankan, objek `Database` dibuat untuk menangani komunikasi dengan database MySQL. Program kemudian mengatur komponen antarmuka, pilihan kategori, kelompok RadioButton status, spinner jumlah karya, dan model tabel.
+| Komponen | Fungsi |
+|---|---|
+| ID Field | Memasukkan identitas penulis. |
+| Nama Field | Memasukkan nama penulis. |
+| Tahun Field | Memasukkan tahun lahir penulis. |
+| Kategori ComboBox | Memilih kategori karya penulis. |
+| Jumlah Karya Spinner | Menentukan jumlah karya penulis. |
+| Status RadioButton | Memilih status penulis. |
+| Tabel Data Penulis | Menampilkan data penulis dari database. |
+| Tombol Add | Menambahkan data penulis baru. |
+| Tombol Update | Memperbarui data penulis yang dipilih. |
+| Tombol Delete | Menghapus data penulis yang dipilih. |
+| Tombol Cancel | Mengosongkan form dan membatalkan pemilihan data. |
 
-Data penulis yang tersimpan di database ditampilkan pada tabel.
+## Fitur Program
 
-### 2. Read Data
+### 1. Create — Menambahkan Data
 
-Program mengambil seluruh data penulis dari tabel `penulis` menggunakan perintah SQL `SELECT`. Data yang diperoleh ditampilkan pada tabel di antarmuka.
+Fitur Create digunakan untuk menambahkan data penulis baru ke dalam database.
 
-### 3. Add Data
+Alur proses:
 
-Pengguna mengisi form data penulis dan menekan tombol **Add**.
+1. Pengguna mengisi formulir data penulis.
+2. Pengguna menekan tombol **Add**.
+3. Program memeriksa kelengkapan dan validitas input.
+4. Program memeriksa apakah ID penulis sudah digunakan.
+5. Jika data valid dan ID belum digunakan, program menjalankan perintah SQL `INSERT`.
+6. Tabel diperbarui untuk menampilkan data terbaru.
+7. Formulir dikosongkan setelah data berhasil ditambahkan.
 
-Program memeriksa kelengkapan serta validitas input. Jika input valid, program memeriksa apakah ID sudah digunakan. Jika ID belum digunakan, data disimpan ke database menggunakan perintah SQL `INSERT`.
+Jika input tidak valid atau ID sudah digunakan, program menampilkan dialog error.
 
-Setelah berhasil, tabel diperbarui dan form dikosongkan. Jika terjadi kesalahan, program menampilkan dialog error.
+### 2. Read — Menampilkan Data
 
-### 4. Update Data
+Fitur Read digunakan untuk menampilkan data penulis yang tersimpan di database.
 
-Pengguna memilih salah satu baris pada tabel. Data dari baris tersebut ditampilkan pada form, kemudian tombol **Add** berubah menjadi **Update**.
+Alur proses:
 
-Pengguna dapat mengubah data yang diperlukan dan menekan tombol **Update**. Program melakukan validasi input, kemudian memperbarui data di database menggunakan perintah SQL `UPDATE`.
+1. Program menjalankan perintah SQL `SELECT` untuk mengambil data dari tabel `penulis`.
+2. Program membaca hasil query.
+3. Data dimasukkan ke dalam model tabel.
+4. Tabel menampilkan informasi penulis sesuai kolom yang tersedia.
 
-Setelah berhasil, tabel diperbarui dan form dikosongkan.
+### 3. Update — Memperbarui Data
 
-### 5. Delete Data
+Fitur Update digunakan untuk mengubah informasi penulis yang sudah tersimpan di database.
 
-Pengguna memilih data pada tabel, kemudian menekan tombol **Delete**.
+Alur proses:
 
-Program menampilkan dialog konfirmasi penghapusan. Jika pengguna memilih **Yes**, data dihapus dari database menggunakan perintah SQL `DELETE`. Jika pengguna memilih **No**, penghapusan dibatalkan.
+1. Pengguna memilih salah satu baris pada tabel.
+2. Program menampilkan data penulis yang dipilih ke dalam formulir.
+3. Tombol **Add** berubah menjadi **Update**.
+4. Pengguna mengubah informasi yang diperlukan.
+5. Pengguna menekan tombol **Update**.
+6. Program memvalidasi input.
+7. Program memperbarui data menggunakan perintah SQL `UPDATE`.
+8. Tabel diperbarui dan formulir dikosongkan setelah proses berhasil.
 
-Setelah penghapusan berhasil, tabel diperbarui dan form dikosongkan.
+Jika input tidak valid atau ID yang digunakan sudah dimiliki penulis lain, program menampilkan dialog error.
 
-### 6. Cancel
+### 4. Delete — Menghapus Data
 
-Tombol **Cancel** digunakan untuk mengosongkan seluruh input, mengembalikan status ke pilihan awal, membatalkan pemilihan baris tabel, dan mengembalikan tombol ke kondisi awal.
+Fitur Delete digunakan untuk menghapus data penulis yang dipilih dari database.
 
-## Validasi dan Penanganan Error
+Alur proses:
 
-Program memiliki beberapa validasi untuk memastikan data yang dimasukkan sesuai dengan ketentuan.
+1. Pengguna memilih data penulis pada tabel.
+2. Pengguna menekan tombol **Delete**.
+3. Program menampilkan dialog konfirmasi penghapusan.
+4. Jika pengguna memilih **Yes**, program menjalankan perintah SQL `DELETE`.
+5. Jika pengguna memilih **No**, penghapusan dibatalkan.
+6. Setelah penghapusan berhasil, tabel diperbarui dan formulir dikosongkan.
 
-### 1. Input Wajib Diisi
+### 5. Cancel — Membatalkan Pengisian
 
-ID, nama, dan tahun lahir wajib diisi. Jika salah satu input tersebut kosong, program menampilkan dialog error dan mengarahkan fokus ke field yang perlu diperbaiki.
+Tombol Cancel digunakan untuk mengosongkan formulir dan membatalkan pemilihan data.
+
+Ketika tombol ditekan, program mengosongkan field input, mengembalikan kategori dan status ke pilihan awal, menghapus seleksi pada tabel, mengubah tombol Update kembali menjadi Add, serta menonaktifkan tombol Delete.
+
+## Penyimpanan Data
+
+Aplikasi Writer Database menggunakan database MySQL sebagai media penyimpanan data penulis.
+
+Koneksi antara aplikasi Java dan database dilakukan melalui JDBC. Data yang ditambahkan, diperbarui, atau dihapus akan diproses melalui query SQL.
+
+Berbeda dengan penyimpanan menggunakan `ArrayList`, data pada aplikasi ini disimpan dalam database sehingga dapat tersedia kembali ketika aplikasi dijalankan selama data masih tersimpan dan koneksi database dapat digunakan.
+
+## Alur Kerja Program
+
+Secara umum, alur kerja aplikasi Writer Database adalah sebagai berikut:
+
+1. Program dijalankan.
+2. Objek `Database` dibuat untuk menangani koneksi dan operasi database.
+3. Antarmuka aplikasi ditampilkan.
+4. Program mengambil data penulis dari database.
+5. Data ditampilkan pada tabel.
+6. Pengguna memilih operasi yang ingin dilakukan.
+7. Program menjalankan operasi Create, Read, Update, atau Delete.
+8. Program melakukan validasi input apabila diperlukan.
+9. Program menjalankan query SQL sesuai operasi yang dipilih.
+10. Tabel diperbarui setelah operasi berhasil.
+11. Program menampilkan dialog informasi atau error sesuai hasil operasi.
+
+## Error Handling
+
+Error handling digunakan untuk menangani kondisi ketika pengguna memberikan input yang tidak sesuai atau operasi database mengalami kegagalan.
+
+### 1. Field Wajib Kosong
+
+ID, nama, dan tahun lahir wajib diisi. Jika salah satu field tersebut kosong, program menampilkan dialog error dan membatalkan proses penambahan atau pembaruan data.
 
 ### 2. Tahun Lahir Tidak Valid
 
-Tahun lahir harus berupa angka dan berada pada rentang 1 sampai 2026. Jika tahun lahir kosong, bukan angka, atau berada di luar rentang tersebut, program menampilkan dialog error.
+Tahun lahir harus berupa angka dan berada pada rentang 1 sampai 2026. Program menampilkan dialog error apabila tahun lahir tidak diisi, bukan angka, atau berada di luar rentang tersebut.
 
 ### 3. Jumlah Karya Tidak Valid
 
@@ -103,31 +183,76 @@ Jumlah karya harus lebih dari 0. Jika jumlah karya tidak memenuhi ketentuan, pro
 
 ### 4. ID Duplikat
 
-ID penulis harus unik. Jika pengguna memasukkan ID yang sudah digunakan, program menampilkan dialog error dan membatalkan penambahan data.
+ID penulis harus unik. Jika pengguna memasukkan ID yang sudah digunakan ketika menambahkan data, program menolak proses penambahan dan menampilkan dialog error.
 
-Jika terjadi duplikasi ID ketika memperbarui data, program juga menampilkan dialog error.
+Ketika memperbarui data, program juga menangani kondisi ketika ID yang dimasukkan sudah digunakan oleh penulis lain.
 
 ### 5. Kesalahan Database
 
-Jika operasi database gagal, program menampilkan dialog error yang berisi informasi kegagalan. Pada proses penghapusan, program juga menangani kondisi ketika data tidak dapat dihapus karena masih digunakan oleh data lain.
+Jika operasi database gagal, program menampilkan dialog error yang berisi informasi kegagalan. Penanganan ini diterapkan pada operasi penambahan, pembaruan, dan penghapusan data.
 
-## Teknologi yang Digunakan
+### 6. Konfirmasi Penghapusan
 
-- **Java**: Bahasa pemrograman untuk mengembangkan aplikasi.
-- **Java Swing**: Pustaka untuk membangun antarmuka grafis.
-- **MySQL**: Sistem manajemen basis data untuk menyimpan data penulis.
-- **JDBC**: Penghubung antara aplikasi Java dan database MySQL.
+Sebelum menghapus data, program menampilkan dialog konfirmasi. Data hanya dihapus jika pengguna memilih **Yes**. Jika pengguna memilih **No**, proses penghapusan tidak dijalankan.
+
+## Hasil Pengujian
+
+Pengujian dilakukan untuk memastikan fitur pengelolaan data penulis berjalan sesuai fungsinya.
+
+| No. | Fitur yang Diuji | Skenario Pengujian | Hasil yang Diharapkan |
+|---|---|---|---|
+| 1 | Read | Membuka aplikasi | Data penulis ditampilkan pada tabel. |
+| 2 | Create | Menambahkan data baru dengan input valid | Data baru tersimpan dan muncul pada tabel. |
+| 3 | Update | Mengubah data penulis yang dipilih | Data diperbarui dan tabel menampilkan perubahan. |
+| 4 | Delete | Menghapus data penulis yang dipilih | Data dihapus setelah konfirmasi dan tidak lagi muncul pada tabel. |
+| 5 | Cancel | Menekan tombol Cancel | Formulir dikosongkan dan pemilihan data dibatalkan. |
+| 6 | Validasi input | Membiarkan field wajib kosong | Program menampilkan dialog error. |
+| 7 | Validasi tahun lahir | Memasukkan tahun lahir yang tidak valid | Program menampilkan dialog error. |
+| 8 | Validasi jumlah karya | Memasukkan jumlah karya 0 | Program menampilkan dialog error. |
+| 9 | Validasi ID | Memasukkan ID yang sudah digunakan | Program menolak ID duplikat dan menampilkan dialog error. |
+| 10 | Validasi saat Update | Memasukkan ID milik penulis lain | Program menolak perubahan dan menampilkan dialog error. |
+
+
+## Struktur Dokumentasi Repository
+
+```text
+TP5DPBO2526C2/
+├── Dokumentasi/
+│   ├── add_data.gif
+│   ├── data_wajib_isi.gif
+│   ├── delete_data.gif
+│   ├── id_duplikat_tahun_valid.gif
+│   ├── read_data.gif
+│   ├── update_data.gif
+│   └── add_data.mp4
+├── PersonData/
+│   ├── .idea/
+│   ├── lib/
+│   │   └── mysql-connector-j.jar
+│   ├── out/
+│   ├── src/
+│   │   ├── Database.java
+│   │   ├── PeopleMenu.form
+│   │   ├── PeopleMenu.java
+│   │   └── Person.java
+│   ├── .gitignore
+│   └── PersonData.iml
+├── db_person.sql
+└── README.md
+```
 
 
 ## Kesimpulan
 
-Aplikasi pengelolaan data penulis ini menerapkan operasi CRUD menggunakan Java Swing dan MySQL. Program menyediakan fitur untuk menampilkan, menambahkan, memperbarui, dan menghapus data penulis, disertai validasi input serta dialog informasi dan error untuk membantu pengguna ketika berinteraksi dengan aplikasi.
+Aplikasi Writer Database merupakan aplikasi pengelolaan data penulis berbasis Java Swing yang terhubung dengan database MySQL.
+
+Program menerapkan operasi CRUD untuk menampilkan, menambahkan, memperbarui, dan menghapus data penulis. Selain itu, program memiliki validasi input, pemeriksaan ID duplikat, dialog konfirmasi penghapusan, serta penanganan kesalahan untuk membantu menjaga konsistensi data dan memberikan informasi kepada pengguna ketika terjadi kesalahan.
 
 ## Dokumentasi Program
 
-Dokumentasi berikut memperlihatkan pelaksanaan operasi CRUD dan validasi pada aplikasi.
+Dokumentasi berikut memperlihatkan pelaksanaan operasi CRUD dan validasi pada aplikasi. Setiap GIF ditampilkan dengan lebar 500 piksel.
 
-### 1. Read Data
+### 1. Read — Menampilkan Data
 
 Menampilkan data penulis yang tersimpan di database MySQL.
 
@@ -135,41 +260,41 @@ Menampilkan data penulis yang tersimpan di database MySQL.
   <img src="Dokumentasi/read_data.gif" width="500" alt="Dokumentasi Read Data">
 </p>
 
-### 2. Add Data
+### 2. Create — Menambahkan Data
 
-Menambahkan data penulis baru melalui form. Setelah data berhasil ditambahkan, tabel diperbarui untuk menampilkan data terbaru.
+Memperlihatkan proses pengisian formulir dan penambahan data penulis baru ke database.
 
 <p align="left">
   <img src="Dokumentasi/add_data.gif" width="500" alt="Dokumentasi Add Data">
 </p>
 
-### 3. Update Data
+### 3. Update — Memperbarui Data
 
-Memilih data penulis pada tabel, mengubah informasi pada form, kemudian menyimpan perubahan melalui tombol Update.
+Memperlihatkan proses memilih data penulis, mengubah informasi, dan menyimpan perubahan.
 
 <p align="left">
   <img src="Dokumentasi/update_data.gif" width="500" alt="Dokumentasi Update Data">
 </p>
 
-### 4. Delete Data
+### 4. Delete — Menghapus Data
 
-Menghapus data penulis yang dipilih melalui tombol Delete. Program menampilkan dialog konfirmasi sebelum menjalankan penghapusan.
+Memperlihatkan proses penghapusan data penulis melalui tombol Delete dan dialog konfirmasi.
 
 <p align="left">
   <img src="Dokumentasi/delete_data.gif" width="500" alt="Dokumentasi Delete Data">
 </p>
 
-### 5. Validasi Input Wajib
+### 5. Error Handling — Field Wajib Diisi
 
-Menampilkan dialog error ketika pengguna mencoba menambahkan data dengan input wajib yang belum diisi.
+Memperlihatkan dialog error ketika pengguna mencoba menambahkan atau memperbarui data dengan field wajib yang belum diisi.
 
 <p align="left">
   <img src="Dokumentasi/data_wajib_isi.gif" width="500" alt="Dokumentasi Validasi Input Wajib">
 </p>
 
-### 6. Validasi ID Duplikat dan Tahun Lahir
+### 6. Error Handling — ID Duplikat dan Tahun Lahir Tidak Valid
 
-Menampilkan validasi ketika ID penulis sudah digunakan atau tahun lahir tidak memenuhi ketentuan.
+Memperlihatkan penanganan kesalahan ketika ID penulis sudah digunakan atau tahun lahir tidak memenuhi ketentuan.
 
 <p align="left">
   <img src="Dokumentasi/id_duplikat_tahun_valid.gif" width="500" alt="Dokumentasi Validasi ID Duplikat dan Tahun Lahir">
