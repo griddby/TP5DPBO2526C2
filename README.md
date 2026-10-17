@@ -299,3 +299,12 @@ Memperlihatkan penanganan kesalahan ketika ID penulis sudah digunakan atau tahun
 <p align="left">
   <img src="Dokumentasi/id_duplikat_tahun_valid.gif" width="500" alt="Dokumentasi Validasi ID Duplikat dan Tahun Lahir">
 </p>
+
+### 7. Error Handling — Koneksi Database Gagal
+
+Menampilkan dialog error ketika aplikasi gagal terhubung ke database MySQL. Pesan ini membantu pengguna mengetahui bahwa koneksi database mengalami kendala sehingga operasi pengelolaan data tidak dapat dilakukan dengan semestinya.
+
+
+<p align="left">
+  <img src="Dokumentasi/koneksi_database_gagal.png" width="700" alt="Dokumentasi Koneksi Database Gagal">
+</p>
