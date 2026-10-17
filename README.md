@@ -224,7 +224,6 @@ TP5DPBO2526C2/
 │   ├── id_duplikat_tahun_valid.gif
 │   ├── read_data.gif
 │   ├── update_data.gif
-│   └── add_data.mp4
 ├── PersonData/
 │   ├── .idea/
 │   ├── lib/
@@ -240,7 +239,6 @@ TP5DPBO2526C2/
 ├── db_person.sql
 └── README.md
 ```
-
 
 ## Kesimpulan
 
