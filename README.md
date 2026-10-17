@@ -221,6 +221,7 @@ TP5DPBO2526C2/
 │   ├── add_data.gif
 │   ├── data_wajib_isi.gif
 │   ├── delete_data.gif
+│   ├── koneksi_database_gagal.png
 │   ├── id_duplikat_tahun_valid.gif
 │   ├── read_data.gif
 │   ├── update_data.gif
